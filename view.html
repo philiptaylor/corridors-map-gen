@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<meta charset=utf-8>
+<style>
+body {
+	color: white;
+	background: black;
+}
+.hex {
+	border-color: cyan;
+	border-style: none;
+}
+.hex img {
+	width: 24px;
+	height: 24px;
+}
+#sc {
+	width: 72px;
+	height: 72px;
+}
+</style>
+<script>
+function recalc()
+{
+	var csv = '';
+	csv += document.getElementById('url').value + ',';
+	csv += document.getElementById('c').value + ',';
+	csv += document.getElementById('open').value + ',';
+	csv += document.getElementById('s1').value + ',';
+	csv += document.getElementById('s2').value + ',';
+	csv += document.getElementById('s3').value + ',';
+	csv += document.getElementById('s4').value + ',';
+	csv += document.getElementById('s5').value + ',';
+	csv += document.getElementById('s6').value + ',';
+
+	var open = document.getElementById('open').value;
+	document.getElementById('hex1').style.borderBottom = 'none';
+	document.getElementById('hex2').style.borderLeft = 'none';
+	document.getElementById('hex3').style.borderLeft = 'none';
+	document.getElementById('hex4').style.borderTop = 'none';
+	document.getElementById('hex5').style.borderRight = 'none';
+	document.getElementById('hex6').style.borderRight = 'none';
+	if (!open.includes('1')) document.getElementById('hex1').style.borderBottom = '2px cyan solid';
+	if (!open.includes('2')) document.getElementById('hex2').style.borderLeft = '2px cyan solid';
+	if (!open.includes('3')) document.getElementById('hex3').style.borderLeft = '2px cyan solid';
+	if (!open.includes('4')) document.getElementById('hex4').style.borderTop = '2px cyan solid';
+	if (!open.includes('5')) document.getElementById('hex5').style.borderRight = '2px cyan solid';
+	if (!open.includes('6')) document.getElementById('hex6').style.borderRight = '2px cyan solid';
+	
+	
+	for (var s = 1; s <= 6; ++s) {
+		var syms = document.getElementById('s'+s).value.toLowerCase();
+		for (var i = 0; i < 7; ++i) {
+			document.getElementById('s'+s+(i+1)).src = 'symbols/' + syms[i] + '.png';
+		}
+	}
+
+	var syms = document.getElementById('c').value.toLowerCase();
+	document.getElementById('sc').src = 'symbols/' + syms[0] + '.png';
+
+	//if (document.getElementById('img').src != document.getElementById('url').value)
+	//	document.getElementById('img').src = document.getElementById('url').value;
+	document.getElementById('img-link').href = document.getElementById('url').value;
+	document.getElementById('csv').value = csv;
+}
+onload = function()
+{
+	var vals = location.search.substr(1).split(',');
+	document.getElementById('url').value = vals[0];
+	document.getElementById('c').value = vals[1];
+	document.getElementById('open').value = vals[2];
+	document.getElementById('s1').value = vals[3];
+	document.getElementById('s2').value = vals[4];
+	document.getElementById('s3').value = vals[5];
+	document.getElementById('s4').value = vals[6];
+	document.getElementById('s5').value = vals[7];
+	document.getElementById('s6').value = vals[8];
+	recalc();
+}
+</script>
+
+<div>
+ <input id=url value=http:// size=10 oninput=recalc()>
+ <input id=c value=C size=10 oninput=recalc()>
+ <input id=open value=12345 size=10 oninput=recalc()>
+ 
+ 1:<input id=s1 value=ABCDEFG size=10 oninput=recalc()>
+ 2:<input id=s2 value=ABCDEFG size=10 oninput=recalc()>
+ 3:<input id=s3 value=ABCDEFG size=10 oninput=recalc()>
+ 4:<input id=s4 value=ABCDEFG size=10 oninput=recalc()>
+ 5:<input id=s5 value=ABCDEFG size=10 oninput=recalc()>
+ 6:<input id=s6 value=ABCDEFG size=10 oninput=recalc()>
+</div>
+<div>
+ <input id=csv size=80>
+</div>
+
+<div style=display:inline-block>
+
+<div align=center>
+<div align=center class=hex id=hex1 style=display:inline-block>
+ <img src=symbols/b.png id=s17>
+ <img src=symbols/b.png id=s16>
+ <br>
+ <img src=symbols/b.png id=s15>
+ <img src=symbols/b.png id=s14>
+ <img src=symbols/b.png id=s13>
+ <br>
+ <img src=symbols/b.png id=s12>
+ <img src=symbols/b.png id=s11>
+</div>
+</div>
+
+<div align=center>
+
+<div align=center class=hex style=display:inline-block>
+ <div id=hex6>
+ <img src=symbols/b.png id=s66>
+ <img src=symbols/b.png id=s63>
+ <br>
+ <img src=symbols/b.png id=s67>
+ <img src=symbols/b.png id=s64>
+ <img src=symbols/b.png id=s61>
+ <br>
+ <img src=symbols/b.png id=s65>
+ <img src=symbols/b.png id=s62>
+ </div>
+ <br>
+ <div id=hex5>
+ <img src=symbols/b.png id=s53>
+ <img src=symbols/b.png id=s51>
+ <br>
+ <img src=symbols/b.png id=s56>
+ <img src=symbols/b.png id=s54>
+ <img src=symbols/b.png id=s52>
+ <br>
+ <img src=symbols/b.png id=s57>
+ <img src=symbols/b.png id=s55>
+ </div>
+</div>
+
+<img src=symbols/b.png id=sc style=vertical-align:top;margin-top:64px;display:inline-block>
+
+<div align=center class=hex style=display:inline-block>
+ <div id=hex2>
+ <img src=symbols/b.png id=s25>
+ <img src=symbols/b.png id=s27>
+ <br>
+ <img src=symbols/b.png id=s22>
+ <img src=symbols/b.png id=s24>
+ <img src=symbols/b.png id=s26>
+ <br>
+ <img src=symbols/b.png id=s21>
+ <img src=symbols/b.png id=s23>
+ </div>
+ <br>
+ <div id=hex3>
+ <img src=symbols/b.png id=s32>
+ <img src=symbols/b.png id=s35>
+ <br>
+ <img src=symbols/b.png id=s31>
+ <img src=symbols/b.png id=s34>
+ <img src=symbols/b.png id=s37>
+ <br>
+ <img src=symbols/b.png id=s33>
+ <img src=symbols/b.png id=s36>
+ </div>
+</div>
+
+<div align=center>
+<div align=center class=hex id=hex4 style=display:inline-block>
+ <img src=symbols/b.png id=s41>
+ <img src=symbols/b.png id=s42>
+ <br>
+ <img src=symbols/b.png id=s43>
+ <img src=symbols/b.png id=s44>
+ <img src=symbols/b.png id=s45>
+ <br>
+ <img src=symbols/b.png id=s46>
+ <img src=symbols/b.png id=s47>
+</div>
+</div>
+
+</div>
+
+</div>
+<br>
+
+<a id=img-link>Open image</a>
+<!--<iframe id=img width=1920 height=1080></iframe>-->
